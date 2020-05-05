@@ -84,10 +84,10 @@ A file will be downloaded from the F5 device. This file will have to be uploaded
 
 This concludes the configuration of the SP, IdP and Azure AD configuration which is required for almost all F5 scenario's such as Kerberos, Header based and advanced Header injection scenarios.
 
-- [F5 - Azure AD Integration - Access Profile](f5-kerberos.md) - creating an access profile using the SAML IdP provider
+- [F5 - Azure AD Integration - Access Profile](f5-accessprofile.md) - creating an access profile using the SAML IdP provider
 
 > Other items in this tutorial
 > 
 > - [Publishing Kerberos based applications with AAD & F5](f5-kerberos.md)
-> - [Publishing Header based applications with AAD & F5](f5-header.md)
+> - [Publishing Header based applications with AAD & F5](f5-header-based.md)
 > - [Publishing Advanced Header based applications with AAD & F5](f5-advanced-header.md) - an advanced scenario where an external LDAP store is used to inject HTTP HEADERS to the backend webserver.
