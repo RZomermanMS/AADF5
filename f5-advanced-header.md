@@ -30,7 +30,7 @@ This example uses an external Active Directory Lightweight Directory Service (AD
 > - Application Name - **Header App**
 > - Application URL - **https://header.contoso.com**
 > - SSL Client Profile - **Contoso_SSL**
-> - iRule Name - **PartnerID_HeaderInjection**
+> - iRule Name - **Contoso_HeaderInjection**
 
 ## Creating the LDAP connection
 
@@ -76,6 +76,8 @@ As the SAML auth as well as the LDAP auth fallback results in a deny, you might 
 1. In the pop-up under the message text file, type a meaningful error message ("Your Partner ID was not found")
 1. click **Save**
 
+![F5AdvancedHeaderInjectionAccessPolicyWithAlert](./images/4.F5AADAccessPolicyEditorWithAlert.PNG)
+
 ## Adding iRule
 Headers need to be added through an iRule. iRules are executed on the connection and provide advanced capabilities for session management. In our case we want to add the PartnerID as an HTTP Header to the backend server.
 
@@ -106,12 +108,12 @@ if { !([HTTP::header exists "UPN"]) } {
 }
 ```
 
+4. Click **Finish**
+
 The code itself does the following;
 
 _When the rule is activated, it will only start when Access is allowed (Allow from the Access Rule) - it will then fill a variable `<PARTNERID>` with the session variable session.`<ldap.last.attr.PartnerID>` which is retrieved through the LDAP Query. It will also set another variable `<UPN>` by the SAML session variable `<session.saml.last.identity>`.
-Then it will inject the PartnerID as a Header to the backend webserver. If an existing Header is present, it will be replaced by the `<PARTNERID.` from the LDAP Query (to prevent someone injecting their own). The same happens to the UPN of the user in a UPN Header._
-
-4. Click **Finish**
+Then it will inject the PartnerID as a Header to the backend webserver. If an existing Header is present, it will be replaced by the `<PARTNERID>` from the LDAP Query (to prevent someone injecting their own). The same happens to the UPN of the user in a "UPN" Header._
 
 ## Creating a Virtual Server entry
 
