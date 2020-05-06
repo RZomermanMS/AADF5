@@ -45,7 +45,7 @@ For F5 to be able to query our LDAP store it needs to have a connection to the L
 ![F5AdvancedHeaderLDAPServer](./images/5.f5headerLDAPserver.PNG)
 
 ## Adding LDAP query to Access Profile
-One the LDAP server is configured it can be added to the Access Profile to retrieve additional information for the logged-in user.
+Once the LDAP server is configured it can be added to the Access Profile to retrieve additional information for the logged-in user.
 1. Go to **Access >> Profiles / Policies : Access Profiles (Per-Session Policies)** and click the earlier created (`<Header App>`) access profile
 1. Click **Edit** under the Per-Session Policy column
 1. A new window will open with the Access Policy showing `<start>` + `<SAML auth>` - Successful - `<Allow>` | - fallback - `<Deny>`
@@ -90,21 +90,24 @@ when RULE_INIT {
     set static::debug 0
 }
 when ACCESS_ACL_ALLOWED {
+
 set PARTNERID [ACCESS::session data get "session.ldap.last.attr.PartnerID"]
 set UPN [ACCESS::session data get "session.saml.last.identity"]
 
 if { $static::debug } { log local0. "PARTNERID = $PARTNERID" }
-if { !([HTTP::header exists "PARTNERID"]) } {
-    HTTP::header insert "PARTNERID" $PARTNERID
-    }else{
-    HTTP::header replace "PARTNERID" $PARTNERID
-    }
 if { $static::debug } { log local0. "UPN = $UPN" }
-if { !([HTTP::header exists "UPN"]) } {
-    HTTP::header insert "UPN" $UPN
-    }else{
+
+  if {!([HTTP::header exists "PARTNERID"])} { 
+    HTTP::header insert "PARTNERID" $PARTNERID 
+  } else {
+    HTTP::header replace "PARTNERID" $PARTNERID
+  }
+
+  if {!([HTTP::header exists "UPN"])} { 
+    HTTP::header insert "UPN" $UPN 
+  } else {
     HTTP::header replace "UPN" $UPN
-    }
+  }
 }
 ```
 
