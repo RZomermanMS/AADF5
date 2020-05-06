@@ -71,7 +71,7 @@ This chapter will create an IDP linked to the created Azure AD application.
 
 ![F5AADIdPCreation](./images/7.F5AADIdPCreation.PNG)
 
-1. Go to **Access >> Federation : SAML Service Provider : Local SP Services** and click **Create**
+4. Go to **Access >> Federation : SAML Service Provider : Local SP Services** and click **Create**
 1. Give a **Name** (such as `<AAD-header.contoso.com>`) an **Entity ID** (such as `<https://header.contoso.com>`) and **Host** (such as `<https://header.contoso.com>`) and click **OK**
 1. Select the newly created Service Provider entry and click **Bind/Unbind IdP Connectors**
 1. in the pop-up, select **Add New Row**. Select the created IdP provider (`<AAD-header.contoso.com>`) in the dropdown under **SAML IdP Connectors** and click **Update** and click **OK** to close
@@ -79,13 +79,15 @@ This chapter will create an IDP linked to the created Azure AD application.
 
 ![F5AADSPCreation](./images/8.F5AADSPCreation.PNG)
 
-A file will be downloaded from the F5 device. This file will have to be uploaded into the application in Azure under the SAML configuration. 
+A file will be downloaded from the F5 device. This file will have to be uploaded into the application in Azure under the SAML configuration.
 
 1. Open Azure Active Directory in Azure and select **Enterprise Applications**
 1. search for your created application (`<Header App>`) and open the properties of the application
 1. Once the application details are open, select **Single sign-on** and select **SAML**
 1. on the top bar, select **Upload metadata file** and upload the exported F5 XML file.
 1. click **Save**
+
+![F5AADSPCreation](./images/9.F5AADUploadXML)
 
 ## Next steps
 
