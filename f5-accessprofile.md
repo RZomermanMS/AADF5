@@ -31,16 +31,22 @@ Open the F5 Admin console and
 1. Give the access policy a name (`<Header App>`) and set the profile type to **LTM-APM**
 1. Set an **Accepted Language** by clicking a language and clicking **<<** then click **Finished**
 
+![F5AADUploadXML](./images/1.F5AccessProfileCreate.PNG)
+
 1. Click **Edit** under the Per-Session Policy column
 1. A new window will open with the Access Policy showing `<start>` + `<Deny>`
 1. Click the **+** sign. A pop-up will be shown
 1. In the pop-up, select the **Authentication** tab and there select **SAML Auth** and click **Add Item**
 1. A new pop-up will be shown for the SAML Auth configuration. In the **AAA Server** dropdown list select the earlier created IdP (/Common/`<AAD - header.contoso.com>`) and click **Save**
 
+![F5AADUploadXML](./images/2.F5AccessProfileAddSAML.PNG)
+
 The SAML Auth step will be added to the Access Policy flow and it will now show 2 endings (successful and failback).
 
 1. Click the **Deny** in the **Successful** branch and in the pop-up change the value to **Allow** and click **OK**
 1. Click Apply Access Policy on the top of the page
+
+![F5AADAccessPolicyEditor](./images/3.F5AADAccessPolicyEditor.PNG)
 
 This concludes the configuration of the initial access policy.
 

@@ -62,7 +62,7 @@ One the LDAP server is configured it can be added to the Access Profile to retri
 - Agent Sel: **LDAP Query**
 - Condition: **LDAP Query Passed**
 - LDAP Query has: **Passed**
-1. Click **Add Expression** and click **Finished**
+14. Click **Add Expression** and click **Finished**
 1. click **Save**
 
 ![F5AdvancedHeaderInjectionAccessPolicy](./images/2.F5headeraccesspolicywithldaplookup.PNG)
@@ -89,19 +89,29 @@ when RULE_INIT {
 }
 when ACCESS_ACL_ALLOWED {
 set PARTNERID [ACCESS::session data get "session.ldap.last.attr.PartnerID"]
+set UPN [ACCESS::session data get "session.saml.last.identity"]
+
 if { $static::debug } { log local0. "PARTNERID = $PARTNERID" }
 if { !([HTTP::header exists "PARTNERID"]) } {
     HTTP::header insert "PARTNERID" $PARTNERID
     }else{
     HTTP::header replace "PARTNERID" $PARTNERID
     }
+if { $static::debug } { log local0. "UPN = $UPN" }
+if { !([HTTP::header exists "UPN"]) } {
+    HTTP::header insert "UPN" $UPN
+    }else{
+    HTTP::header replace "UPN" $UPN
+    }
 }
 ```
 
 The code itself does the following;
-When the rule is activated, it will only start when Access is allowed (Allow from the Access Rule) - it will then fill a variable `<PARTNERID.` with the session variable session.`<ldap.last.attr.PartnerID>` which is retrieved through the LDAP Query. Then it will inject the PartnerID as a Header to the backend webserver. If an existing Header is present, it will be replaced by the `<PARTNERID.` from the LDAP Query (to prevent someone injecting their own).
 
-1. Click **Finish**
+_When the rule is activated, it will only start when Access is allowed (Allow from the Access Rule) - it will then fill a variable `<PARTNERID>` with the session variable session.`<ldap.last.attr.PartnerID>` which is retrieved through the LDAP Query. It will also set another variable `<UPN>` by the SAML session variable `<session.saml.last.identity>`.
+Then it will inject the PartnerID as a Header to the backend webserver. If an existing Header is present, it will be replaced by the `<PARTNERID.` from the LDAP Query (to prevent someone injecting their own). The same happens to the UPN of the user in a UPN Header._
+
+4. Click **Finish**
 
 ## Creating a Virtual Server entry
 
@@ -116,17 +126,28 @@ First we will need to create a backend pool. An object containing the servers / 
 1. Under service port set the port (`<80>`) and the service type to HTTP and click **Add**
 1. Click **Finished**
 
+![F5CreateBackendPool](./images/1.F5CreatePool.PNG)
+
 To publish the backend webserver
 
 1. Go to **Local Traffic ›› Virtual Servers : Virtual Server List** and click **Create...**
 1. Provide a name for the virtual server (`<Header_App>`) and provide a destination address / mask. This will be the IP address F5 will be listening on.
 1. Set the service port to **443** and the service to **HTTPS**
 1. Under configuration for the **HTTP profile** set it to **http**
-1. Under Configuration for the SSL Profile Client, add your SSL Client profile created earlier `<Contso_SSL>`
+
+![F5CreateVirtualServer](./images/1.CreateVirtualServer.PNG)
+
+
+5. Under Configuration for the SSL Profile Client, add your SSL Client profile created earlier `<Contso_SSL>`
 1. Under Access Policy for the Access Profile, set the value to the earlier created Access Profile `<Header App>`
-1. Under the Resources option, add the earlier created iRule `<PartnerID_HeaderInjection>`
+
+![F5CreateVirtualServerAccessProfile](./images/2.F5CreatePoolSetAccessPolicy.PNG)
+
+7. Under the Resources option, add the earlier created iRule `<PartnerID_HeaderInjection>`
 1. Under the Resources option set the pool to the earlier created pool (`<Header_App_Pool>`).
 1. Click **Finished**
+
+![F5CreateVirtualServerAccessProfile](./images/3.F5CreateVirtualServerSetResources.PNG)
 
 The Virtual Server should have a green indicator in front of the name ensuring the backend webserver is available. This concludes the configuration.
 
@@ -136,4 +157,3 @@ The Virtual Server should have a green indicator in front of the name ensuring t
 Prior to users being able to connect to the website, the FQDN of the website needs to be resolvable. While theoretically the certificate doesn't have to match the URL this is highly advised. Make sure your test client can find the IP address of the virtual server for the configured name for the website. This can be done through DNS or by manipulating the local hosts file on the test client.
 
 In order to test the web publication, an user with the same userPrincipalName as our Azure AD user will have to be existent in the LDAP store and have its PartnerID provisioned. Once the user logs in to Azure AD (myapps.microsoft.com) they can click the (`<Header_App>`) in the portal. This will send them to the FQDN configured for the application. If all is well, F5 will authenticate the user using the SAML token and then perform the LDAP lookup prior to injecting the HTTP header and sending the user to the backend website.
-

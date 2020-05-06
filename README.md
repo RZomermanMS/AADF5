@@ -87,7 +87,7 @@ A file will be downloaded from the F5 device. This file will have to be uploaded
 1. on the top bar, select **Upload metadata file** and upload the exported F5 XML file.
 1. click **Save**
 
-![F5AADSPCreation](./images/9.F5AADUploadXML)
+![F5AADUploadXML](./images/9.F5AADUploadXML.PNG)
 
 ## Next steps
 
