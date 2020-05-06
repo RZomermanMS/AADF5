@@ -59,18 +59,25 @@ The (web) application hosted by F5 will require an "Enterprise Application" in A
 1. In the pop-up select **No, I'll save later**
 1. Under the SAML Signing Certificate download the **Federation Metadata XML** file and save it.
 
+![F5AADAppConfig](./images/6.F5HeaderAADAppConfig.PNG)
+
 ## Creating an IDP and SP in F5
 
 This chapter will create an IDP linked to the created Azure AD application.
 
 1. In F5 select **Access >> Federation : SAML Service Provider : External IdP Connectors**
 1. Click the down arrow under **Create** and select **From metadata**
-1. Browse for the AAD downloaded `<Federation Metadata XML>` file, give the provider a name such as `<AAD - header.contoso.com>` and click **OK**
+1. Browse for the AAD downloaded `<Federation Metadata XML>` file, give the provider a name such as `<AAD-header.contoso.com>` and click **OK**
+
+![F5AADIdPCreation](./images/7.F5AADIdPCreation.PNG)
+
 1. Go to **Access >> Federation : SAML Service Provider : Local SP Services** and click **Create**
-1. Give a **Name** (such as `<AAD - header.contoso.com>`) an **Entity ID** (such as `<https://header.contoso.com>`) and **Host** (such as `<https://header.contoso.com>`) and click **OK**
+1. Give a **Name** (such as `<AAD-header.contoso.com>`) an **Entity ID** (such as `<https://header.contoso.com>`) and **Host** (such as `<https://header.contoso.com>`) and click **OK**
 1. Select the newly created Service Provider entry and click **Bind/Unbind IdP Connectors**
-1. in the pop-up, select **Add New Row**. Select the created IdP provider (`<AAD - header.contoso.com>`) in the dropdown under **SAML IdP Connectors** and click **Update** and click **OK** to close
+1. in the pop-up, select **Add New Row**. Select the created IdP provider (`<AAD-header.contoso.com>`) in the dropdown under **SAML IdP Connectors** and click **Update** and click **OK** to close
 1. Select the newly created Service Provider entry and click **Export Metadata**
+
+![F5AADSPCreation](./images/8.F5AADSPCreation.PNG)
 
 A file will be downloaded from the F5 device. This file will have to be uploaded into the application in Azure under the SAML configuration. 
 

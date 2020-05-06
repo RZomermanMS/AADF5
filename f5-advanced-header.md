@@ -121,7 +121,7 @@ To publish the backend webserver
 1. Go to **Local Traffic ›› Virtual Servers : Virtual Server List** and click **Create...**
 1. Provide a name for the virtual server (`<Header_App>`) and provide a destination address / mask. This will be the IP address F5 will be listening on.
 1. Set the service port to **443** and the service to **HTTPS**
-1. Under configuration for the**HTTP profile** set it to **http**
+1. Under configuration for the **HTTP profile** set it to **http**
 1. Under Configuration for the SSL Profile Client, add your SSL Client profile created earlier `<Contso_SSL>`
 1. Under Access Policy for the Access Profile, set the value to the earlier created Access Profile `<Header App>`
 1. Under the Resources option, add the earlier created iRule `<PartnerID_HeaderInjection>`
