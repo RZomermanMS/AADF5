@@ -10,7 +10,6 @@ ms.subservice:
 ---
 
 # F5 - Azure AD Integration - Advanced Header Configuration
-description: 
 
 ## Introduction
 
@@ -18,6 +17,14 @@ In this scenario an external LDAP store is used to retrieve additional attribute
 This example uses an external Active Directory Lightweight Directory Service (AD-LDS) to provide an attribute called "ParterID" and searches are performed based on the incoming SAML attribute userPrincipalName stored in the session.saml.last.identity variable in F5 upon successful SAML authentication.
 
 ![F5AdvancedHeaderInjectionArchitecture](./images/1.F5HeaderInjectionArchitecture.PNG)
+
+## Prerequisites
+
+To complete this tutorial, make sure you have completed the following guides:
+
+- [F5 - Azure AD Integration - Create an Enterprise Application in AAD](f5-aad.md)
+- [F5 - Azure AD Integration - Manual creation of SP and IdP](f5-aad-saml-manual.md)
+- [F5 - Azure AD Integration - Manual creation of an Access Profile](f5-accessprofile.md)
 
 > [!NOTE]
 > This walkthrough uses sample names and values from a company called Contoso. Replace these with your own. For example:
@@ -141,7 +148,6 @@ To publish the backend webserver
 1. Under configuration for the **HTTP profile** set it to **http**
 
 ![F5CreateVirtualServer](./images/1.CreateVirtualServer.PNG)
-
 
 5. Under Configuration for the SSL Profile Client, add your SSL Client profile created earlier `<Contso_SSL>`
 1. Under Access Policy for the Access Profile, set the value to the earlier created Access Profile `<Header App>`
