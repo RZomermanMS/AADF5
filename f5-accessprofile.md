@@ -55,6 +55,5 @@ This concludes the configuration of the initial access policy.
 This concludes the configuration of the SP, IdP and Azure AD configuration which is required for almost all F5 scenario's such as Kerberos, Header based and advanced Header injection scenarios.
 
 - [Publishing Advanced Header based applications with AAD & F5](f5-advanced-header.md) - an advanced scenario where an external LDAP store is used to inject HTTP HEADERS to the backend webserver.
-
-> - [Publishing Kerberos based applications with AAD & F5](f5-kerberos.md)
-> - [Publishing Header based applications with AAD & F5](f5-header.md)
+- [Publishing Kerberos based applications with AAD & F5](f5-kerberos.md)
+- [Publishing Header based applications with AAD & F5](f5-header.md)
