@@ -63,6 +63,7 @@ This concludes the configuration of the Azure AD configuration which is required
 F5 supports multiple ways for integrating with Azure AD. The easiest is the Guided Configuration, but it is also possible to manually configure the SP and IdP to be used for other scenario's:
 
 - [F5 - Azure AD Integration - Guided Configuration for Kerberos](f5-kerberos-guided.md) - a guided tutorial for deploying Kerberos based web applications.
+- [F5 - Azure AD Integration - Guided Configuration for HTTP Headers](f5-header-guided.md)
 
 - [F5 - Azure AD Integration - Manual creation of SP and IdP](f5-aad-saml-manual.md) - tutorial for configuring the Service Provider and IdP based on Azure AD.
 - [F5 - Azure AD Integration - Manual deployment of Advanced Header Based Application](f5-advanced-header.md) - tutorial for deploying a header based web application with 3rd party LDAP store.

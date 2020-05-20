@@ -55,6 +55,7 @@ The configuration of your F5-APM with AAD integration can be based the Guided Co
 - [F5 - Azure AD Integration - Create an Enterprise Application in AAD](f5-aad.md)
 
 > Other items in this tutorial
+> - [F5 - Azure AD Integration - Guided Configuration for HTTP Headers](f5-header-guided.md)
 > - [Manual Configuration of AAD as SAML provider](f5--aad-saml-manual.md)
 > - [F5 - Azure AD Integration - Manual creation of an Access Profile with SAML](f5-accessprofile.md)
 > - [Publishing Kerberos based applications with AAD & F5](f5-kerberos.md)
