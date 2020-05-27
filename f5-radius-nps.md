@@ -18,8 +18,8 @@ In this tutorial, you'll learn how to integrate F5 with Azure Active Directory (
 You will require an Active Directory, an Azure Active Directory (both connected using Azure AD Connect)
 an F5 appliance with APM module
 
-
 ## F5 & Radius (Azure MFA NPS Agent)
+
 You can integrate F5 with an external radius server, this is not something new. What is new is that that Radius Server can now also have the Azure MFA NPS extension installed. This tutorial will discuss the integration for radius authentication with the Azure MFA NPS agent. When you install the default Azure MFA NPS agent the default policies in NPS dictate a call needs to have username & password, but this tutorial also covers using the radius servers as a step-up MFA provider.
 
 ### Installing NPS
