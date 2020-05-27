@@ -60,6 +60,9 @@ In some configurations it is desired to have some on-premises AD attributes avai
 
 This concludes the configuration of the Azure AD configuration which is required for almost all F5 scenario's such as Kerberos, Header based and advanced Header injection scenarios.
 
+optionally - the import of an SSL certificate to be used for publishing the application
+- [F5 - Import a PFX and configure the client SSL profile](f5-client-ssl.md)
+
 F5 supports multiple ways for integrating with Azure AD. The easiest is the Guided Configuration, but it is also possible to manually configure the SP and IdP to be used for other scenario's:
 
 - [F5 - Azure AD Integration - Guided Configuration for Kerberos](f5-kerberos-guided.md) - a guided tutorial for deploying Kerberos based web applications.
