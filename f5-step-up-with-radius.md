@@ -120,7 +120,7 @@ The policy needs to be added to the published website, this can be done through 
 
 ![f5-step-up-virtual-server-assign](./images/f5-step-up-virtual-server-assign.png)
 
-4.	Click Update to make the change active
+4.	Click **Update** to make the change active
 
 ### Testing
 
