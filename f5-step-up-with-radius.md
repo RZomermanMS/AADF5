@@ -26,6 +26,12 @@ To get started, you need the following items:
 - A configured Access Profile in F5 according to:
     [Manual Configuration of AAD as SAML provider](f5--aad-saml-manual.md)
 
+### Architecture
+
+The following architecture will be used:
+
+![f5-step-up-architecture](./images/f5-step-up-architecture.png)
+
 ### Per-Request Policy
 
 In order to implement this, we need to have a Per-Session policy as well as a Per-Request policy.
