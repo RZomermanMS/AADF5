@@ -24,7 +24,10 @@ To get started, you need the following items:
 - an application in Azure AD according to: [F5 - Creating an Enterprise Application in Azure AD](f5-aad.md)
 
 - A configured Access Profile in F5 according to:
-    [Manual Configuration of AAD as SAML provider](f5--aad-saml-manual.md)
+    [Manual Configuration of AAD as SAML provider](f5-aad-saml-manual.md)
+
+- A configured Radius Server in F5 according to:
+    [F5 - Azure AD Integration - Radius based MFA](f5-radius-nps.md) [note]_only create the Radius configuration but do not apply to the access policy_
 
 ### Architecture
 
@@ -36,7 +39,11 @@ The following architecture will be used:
 
 In order to implement this, we need to have a Per-Session policy as well as a Per-Request policy.
 
-The per-session policy will authenticate the user based on SAML (Azure AD) and grant access to the base of the website. The Per-Request policy will be implemented to monitor the URLs used and request the user to perform Radius Authentication if */auth/* is being accessed. Obviously the URL can be more strict.
+The per-session policy will authenticate the user based on SAML (Azure AD) and grant access to the base of the website. 
+
+![f5-step-up-architecture](./images/f5-step-up-access-policy.png)
+
+The Per-Request policy will be implemented to monitor the URLs used and request the user to perform Radius Authentication if */auth/* is being accessed. Obviously the URL can be more strict.
 To create the Per-Request policy:
 
 1. Go to **Access >> Profiles / Policies : Per Request Policies** and click **create..**
